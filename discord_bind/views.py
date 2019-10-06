@@ -54,7 +54,7 @@ def oauth_session(request, state=None, token=None):
     else:
         redirect_uri = request.build_absolute_uri(
             reverse('discord_bind_callback'))
-    return OAuth2Session(settings.DISCORD_CLIENT_ID() if callback(settings.DISCORD_CLIENT_ID) else settings.DISCORD_CLIENT_ID,
+    return OAuth2Session(settings.DISCORD_CLIENT_ID() if callable(settings.DISCORD_CLIENT_ID) else settings.DISCORD_CLIENT_ID,
                          redirect_uri=redirect_uri,
                          scope=['identity'],
                          token=token,
@@ -127,7 +127,7 @@ def callback(request):
     oauth = oauth_session(request, state=state)
     token = oauth.fetch_token(settings.DISCORD_BASE_URI +
                               settings.DISCORD_TOKEN_PATH,
-                              client_secret=settings.DISCORD_CLIENT_SECRET() if callback(settings.DISCORD_CLIENT_SECRET) else settings.DISCORD_CLIENT_SECRET,
+                              client_secret=settings.DISCORD_CLIENT_SECRET() if callable(settings.DISCORD_CLIENT_SECRET) else settings.DISCORD_CLIENT_SECRET,
                               authorization_response=response)
 
     # Get Discord user data
