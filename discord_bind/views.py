@@ -56,7 +56,7 @@ def oauth_session(request, state=None, token=None):
             reverse('discord_bind_callback'))
     return OAuth2Session(settings.DISCORD_CLIENT_ID() if callable(settings.DISCORD_CLIENT_ID) else settings.DISCORD_CLIENT_ID,
                          redirect_uri=redirect_uri,
-                         scope=['identity'],
+                         scope=['identify'],
                          token=token,
                          state=state)
 
