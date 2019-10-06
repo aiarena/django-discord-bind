@@ -54,11 +54,9 @@ def oauth_session(request, state=None, token=None):
     else:
         redirect_uri = request.build_absolute_uri(
             reverse('discord_bind_callback'))
-    scope = (['email', 'guilds.join'] if settings.DISCORD_EMAIL_SCOPE
-             else ['identity', 'guilds.join'])
     return OAuth2Session(settings.DISCORD_CLIENT_ID() if callback(settings.DISCORD_CLIENT_ID) else settings.DISCORD_CLIENT_ID,
                          redirect_uri=redirect_uri,
-                         scope=scope,
+                         scope=['identity'],
                          token=token,
                          state=state)
 
