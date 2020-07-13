@@ -28,7 +28,7 @@ from __future__ import unicode_literals
 import requests
 from django.db import models
 from django.contrib.auth.models import User, Group
-from django.utils.encoding import python_2_unicode_compatible
+from six import python_2_unicode_compatible
 from discord_bind.conf import settings
 from django.conf import settings as django_settings
 
