@@ -24,6 +24,6 @@ SOFTWARE.
 
 """
 # following PEP 386
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 
 default_app_config = 'discord_bind.apps.DiscordBindConfig'
