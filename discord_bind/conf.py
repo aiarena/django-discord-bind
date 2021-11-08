@@ -47,6 +47,9 @@ class DiscordBindConf(AppConf):
     REDIRECT_URI = None
     INVITE_URI = 'https://discordapp.com/channels/@me'
     RETURN_URI = '/'
+    
+    # For upgrade to Django 3.2
+    default_auto_field = 'django.db.models.AutoField'
 
     class Meta:
         proxy = True
